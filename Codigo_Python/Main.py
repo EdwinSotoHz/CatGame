@@ -6,8 +6,8 @@ from ButtonManager import ButtonManager
 class Main:
     def __init__(self):
         # Inicializar jugadores y el tablero
-        self.player1 = Player('X', 'Jugador 1')
-        self.player2 = Player('O', 'Jugador 2')
+        self.player1 = Player('X', 'Jugador X')
+        self.player2 = Player('O', 'Jugador O')
         self.board = Board(self.player1)
         self.btnManager = ButtonManager()
 
