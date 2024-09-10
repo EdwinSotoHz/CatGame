@@ -7,6 +7,9 @@ class ButtonManager:
     def disable_button(self, button):
         button.config(state=tk.DISABLED)
 
+    def enable_button(self, button):
+            button.config(state=tk.NORMAL)
+
     def disable_all_buttons(self, buttons):
         for button in buttons.values():
             button.config(state=tk.DISABLED)

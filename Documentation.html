@@ -15219,20 +15219,65 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Clase-MainGame">Clase <code>MainGame</code><a class="anchor-link" href="#Clase-MainGame">&#182;</a></h3><p>Esta clase coordina el inicio del juego y la gestión de los jugadores.</p>
+<h3 id="Clase-Main">Clase <code>Main</code><a class="anchor-link" href="#Clase-Main">&#182;</a></h3><h4 id="Descripci%C3%B3n">Descripci&#243;n<a class="anchor-link" href="#Descripci%C3%B3n">&#182;</a></h4><p>La clase <code>Main</code> se encarga de inicializar la interfaz gráfica del juego de Tic-Tac-Toe, gestionar los jugadores, el tablero y los botones. Controla el flujo de juego desde la selección de casillas, la verificación del estado del juego (ganador o empate), y proporciona la opción de reiniciar el juego.</p>
+<h4 id="M%C3%A9todos:">M&#233;todos:<a class="anchor-link" href="#M%C3%A9todos:">&#182;</a></h4><ul>
+<li><p><strong><code>__init__(self)</code></strong><br />
+Constructor que inicializa los componentes principales del juego:</p>
+<ul>
+<li>Crea dos instancias de jugadores (<code>Player</code>).</li>
+<li>Inicializa el tablero (<code>Board</code>).</li>
+<li>Configura la ventana principal utilizando Tkinter.</li>
+<li>Coloca la etiqueta informativa en la parte superior.</li>
+<li>Genera los botones del tablero para seleccionar las casillas.</li>
+<li>Crea un botón de reinicio para comenzar una nueva partida.</li>
+<li>Inicia el bucle de eventos para la ventana gráfica.</li>
+</ul>
 <p><strong>Atributos:</strong></p>
 <ul>
-<li><code>player1: Player</code>: Instancia del primer jugador.</li>
-<li><code>player2: Player</code>: Instancia del segundo jugador.</li>
-<li><code>board: Board</code>: Instancia del tablero del juego.</li>
-<li><code>btn_manager: ButtonManager</code>: Instancia para gestionar los botones de la interfaz.</li>
+<li><code>player1</code>: Instancia de la clase <code>Player</code>, el jugador con el símbolo 'X'.</li>
+<li><code>player2</code>: Instancia de la clase <code>Player</code>, el jugador con el símbolo 'O'.</li>
+<li><code>board</code>: Instancia de la clase <code>Board</code> que gestiona el estado del tablero.</li>
+<li><code>btnManager</code>: Instancia de <code>ButtonManager</code> que controla el estado de los botones en la interfaz gráfica.</li>
+<li><code>root</code>: Ventana principal de la aplicación Tkinter.</li>
+<li><code>label</code>: Etiqueta que muestra mensajes de estado del juego.</li>
+<li><code>mainFrame</code>: Frame que contiene los botones del tablero.</li>
+<li><code>buttons</code>: Diccionario que contiene los botones del tablero.</li>
+<li><code>buttonReset</code>: Botón para reiniciar el juego.</li>
 </ul>
-<p><strong>Métodos:</strong></p>
+</li>
+<li><p><strong><code>create_buttons(self)</code></strong><br />
+Método para crear los botones del tablero. Cada botón representa una casilla del tablero de Tic-Tac-Toe, y su posición es gestionada por el método <code>grid</code>. Los botones se configuran con un comando que llama a <code>update_board</code> cuando son presionados, enviando las coordenadas correspondientes del tablero.</p>
+</li>
+<li><p><strong><code>reset(self)</code></strong><br />
+Reinicia el estado del juego:</p>
 <ul>
-<li><code>initialize_game(player1: Player, player2: Player) -&gt; None</code>: Inicializa el juego asignando <code>player1</code> y <code>player2</code>, y configura el tablero y los botones.</li>
-<li><code>reset_game() -&gt; None</code>: Reinicia el estado del juego, incluyendo el tablero y los jugadores, y restablece los botones.</li>
-<li><code>update_board(button: tk.Button, x: int, y: int) -&gt; None</code>: Actualiza el tablero con el símbolo del jugador actual y desactiva el botón correspondiente. Verifica si hay un ganador y cambia el turno al siguiente jugador.</li>
+<li>Limpia el tablero.</li>
+<li>Resetea los botones a su estado inicial (vacíos y habilitados).</li>
+<li>Desactiva el botón de reinicio hasta que se termine una partida.</li>
+<li>Reinicia los jugadores.</li>
 </ul>
+</li>
+<li><p><strong><code>update_board(self, button, x, y)</code></strong><br />
+Actualiza el tablero cuando un jugador selecciona una casilla:</p>
+<ul>
+<li>Coloca el símbolo del jugador en la casilla seleccionada si está vacía.</li>
+<li>Actualiza el texto del botón correspondiente.</li>
+<li>Desactiva el botón para evitar que se vuelva a usar.</li>
+<li>Verifica si el movimiento ha resultado en un ganador o si el tablero está lleno (empate).</li>
+<li>Si hay un ganador o empate, actualiza la etiqueta superior con el resultado y habilita el botón de reinicio.</li>
+<li>Cambia el turno al otro jugador.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4 id="Dependencias:">Dependencias:<a class="anchor-link" href="#Dependencias:">&#182;</a></h4><ul>
+<li><code>tkinter</code>: Biblioteca estándar de Python para interfaces gráficas.</li>
+<li><code>Player</code>: Clase que representa a un jugador. Se espera que tenga al menos los atributos <code>symbol</code> (símbolo del jugador) y <code>name</code> (nombre del jugador).</li>
+<li><code>Board</code>: Clase que maneja la lógica del tablero de Tic-Tac-Toe. Debe gestionar la colocación de símbolos y la verificación del estado del juego (ganador o empate).</li>
+<li><code>ButtonManager</code>: Clase para gestionar los botones en la interfaz gráfica (habilitar, deshabilitar, cambiar texto, etc.).</li>
+</ul>
+<hr />
+<p>Esta clase organiza y maneja la interfaz gráfica del juego de manera eficiente, proporcionando un flujo de juego fluido y una interfaz sencilla.</p>
 <hr />
 <h3 id="Clase-Player">Clase <code>Player</code><a class="anchor-link" href="#Clase-Player">&#182;</a></h3><p>Esta clase representa a un jugador y gestiona la información de sus jugadas.</p>
 <p><strong>Atributos:</strong></p>
