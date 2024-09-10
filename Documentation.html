@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gato</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Documentation</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -15213,18 +15213,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <!-- End of mermaid configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
-<div id="cell-id=3e75f2f2-3d54-4590-ae3a-dbc33eceb610" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-
-</div>
-</div>
-</div>
-</div>
-<div id="cell-id=162928b1-a080-4e8b-aaa0-ffe91d5ce56e" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div id="cell-id=def045b5-b34e-4c96-b042-3b0f18150a1d" class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -15233,68 +15222,59 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <h3 id="Clase-MainGame">Clase <code>MainGame</code><a class="anchor-link" href="#Clase-MainGame">&#182;</a></h3><p>Esta clase coordina el inicio del juego y la gestión de los jugadores.</p>
 <p><strong>Atributos:</strong></p>
 <ul>
-<li><code>player1: Player</code>: Instancia del primer jugador humano.</li>
-<li><code>player2: Player</code>: Instancia del segundo jugador humano.</li>
+<li><code>player1: Player</code>: Instancia del primer jugador.</li>
+<li><code>player2: Player</code>: Instancia del segundo jugador.</li>
 <li><code>board: Board</code>: Instancia del tablero del juego.</li>
+<li><code>btn_manager: ButtonManager</code>: Instancia para gestionar los botones de la interfaz.</li>
 </ul>
 <p><strong>Métodos:</strong></p>
 <ul>
-<li><code>initialize_game(player1: Player, player2: Player) -&gt; None</code>: Inicializa el juego asignando <code>player1</code> y <code>player2</code> y configura el tablero.</li>
-<li><code>reset_game() -&gt; None</code>: Llama a los métodos de las instancias de <code>Player</code> y <code>Board</code> para reiniciar todos los valores.</li>
-<li><code>play() -&gt; None</code>: Método principal que inicia el ciclo del juego, alterna entre jugadores y verifica las condiciones de victoria o empate.</li>
+<li><code>initialize_game(player1: Player, player2: Player) -&gt; None</code>: Inicializa el juego asignando <code>player1</code> y <code>player2</code>, y configura el tablero y los botones.</li>
+<li><code>reset_game() -&gt; None</code>: Reinicia el estado del juego, incluyendo el tablero y los jugadores, y restablece los botones.</li>
+<li><code>update_board(button: tk.Button, x: int, y: int) -&gt; None</code>: Actualiza el tablero con el símbolo del jugador actual y desactiva el botón correspondiente. Verifica si hay un ganador y cambia el turno al siguiente jugador.</li>
 </ul>
 <hr />
-<h3 id="Clase-Player">Clase <code>Player</code><a class="anchor-link" href="#Clase-Player">&#182;</a></h3><p>Esta clase representa a un jugador y gestiona la info de sus jugadas.</p>
+<h3 id="Clase-Player">Clase <code>Player</code><a class="anchor-link" href="#Clase-Player">&#182;</a></h3><p>Esta clase representa a un jugador y gestiona la información de sus jugadas.</p>
 <p><strong>Atributos:</strong></p>
 <ul>
 <li><code>symbol: str</code>: El símbolo del jugador, puede ser <code>'X'</code> o <code>'O'</code>.</li>
+<li><code>name: str</code>: El nombre del jugador.</li>
 <li><code>turn: bool</code>: Indica si es el turno del jugador.</li>
-<li><code>occupied_squares: list[tuple[int, int]]</code>: Lista de tuplas que contiene las coordenadas de las casillas que el jugador ha ocupado (p. ej., <code>[(0, 0), (1, 2)]</code>).</li>
-<li><code>victory_count: int:</code> Contador de las victorias del jugador.</li>
+<li><code>victory_count: int</code>: Contador de las victorias del jugador.</li>
 </ul>
 <p><strong>Métodos:</strong></p>
 <ul>
-<li><code>place_symbol(row: int, col: int) -&gt; None</code>: Añade las coordenadas <code>(row, col)</code> a <code>occupied_squares</code>.</li>
-<li><code>reset_player() -&gt; None</code>: Reinicia los atributos del jugador para comenzar una nueva partida (<code>turn</code> en <code>False</code> y <code>occupied_squares</code> como lista vacía).</li>
+<li><code>reset_player() -&gt; None</code>: Reinicia los atributos del jugador para comenzar una nueva partida (<code>turn</code> en <code>False</code> y <code>victory_count</code> sin cambios).</li>
 </ul>
 <hr />
 <h3 id="Clase-Board">Clase <code>Board</code><a class="anchor-link" href="#Clase-Board">&#182;</a></h3><p>Esta clase gestiona la lógica del juego, incluyendo la verificación de combinaciones ganadoras y el seguimiento del turno.</p>
 <p><strong>Atributos:</strong></p>
 <ul>
-<li><code>occupied_squares: list[list[Optional[str]]]</code>: Matriz 3x3 que indica si las casillas están ocupadas y por quién (puede ser <code>'X'</code>, <code>'O'</code>, o <code>None</code>).</li>
-<li><code>player1: Player</code>: Instancia del primer jugador.</li>
-<li><code>player2: Player</code>: Instancia del segundo jugador.</li>
+<li><code>board: list[list[str]]</code>: Matriz 3x3 que indica si las casillas están ocupadas y por quién (puede ser <code>'X'</code>, <code>'O'</code>, o <code>' '</code>).</li>
 <li><code>current_player: Player</code>: Jugador actual cuyo turno es.</li>
 </ul>
 <p><strong>Métodos:</strong></p>
 <ul>
-<li><code>get_current_player() -&gt; Player</code>: Retorna el jugador que tiene el turno actualmente.</li>
-<li><code>get_all_symbols() -&gt; list[list[Optional[str]]]</code>: Devuelve una matriz con todos los símbolos ocupados en el tablero. [De los datos de  los jugadores]</li>
-<li><code>get_winning_combinations() -&gt; list[list[tuple[int, int]]]</code>: Retorna una lista de posibles combinaciones ganadoras (filas, columnas y diagonales). [De los datos de  los jugadores]</li>
-<li><code>check_winner() -&gt; Optional[Player]</code>: Verifica si el <code>current_player</code> ha completado una combinación ganadora. Retorna el jugador ganador o <code>None</code> si no hay ganador, solo se ejecuta despues de que se hayan concretado por lo menos 6 turnos (3 turnos para cada jugador) y aumenta el contador de victorias para el ganador en 1.</li>
-<li><code>reset_board() -&gt; None</code>: Reinicia todas las casillas del tablero a su estado original (<code>None</code>) y restablece el turno.</li>
+<li><code>place_symbol(x: int, y: int) -&gt; None</code>: Coloca el símbolo del <code>current_player</code> en las coordenadas <code>(x, y)</code> del tablero.</li>
+<li><code>check_winner() -&gt; bool</code>: Verifica si el <code>current_player</code> ha completado una combinación ganadora.</li>
+<li><code>is_board_full() -&gt; bool</code>: Verifica si el tablero está completamente lleno.</li>
+<li><code>reset_board() -&gt; None</code>: Reinicia todas las casillas del tablero a su estado original (<code>' '</code>).</li>
 </ul>
 <hr />
-<h3 id="Clase-Button">Clase <code>Button</code><a class="anchor-link" href="#Clase-Button">&#182;</a></h3><p>Esta clase representa una casilla o botón en la interfaz de usuario.</p>
-<p><strong>Atributos:</strong></p>
-<ul>
-<li><code>symbol: Optional[str]</code>: El símbolo que el botón muestra, puede ser <code>'X'</code>, <code>'O'</code>, o estar vacío (<code>None</code>).</li>
-<li><code>row: int</code>: La fila de la casilla en la matriz.</li>
-<li><code>col: int</code>: La columna de la casilla en la matriz.</li>
-</ul>
+<h3 id="Clase-ButtonManager">Clase <code>ButtonManager</code><a class="anchor-link" href="#Clase-ButtonManager">&#182;</a></h3><p>Esta clase gestiona la interfaz de usuario relacionada con los botones del tablero.</p>
 <p><strong>Métodos:</strong></p>
 <ul>
-<li><code>set_symbol(symbol: str) -&gt; None</code>: Cambia el valor de <code>symbol</code> para reflejar la colocación del símbolo del jugador en el botón.</li>
-<li><code>get_symbol() -&gt; Optional[str]</code>: Devuelve el símbolo actual en la casilla (puede ser <code>'X'</code>, <code>'O'</code>, o <code>None</code>).</li>
-<li><code>is_occupied() -&gt; bool</code>: Verifica si el botón está ocupado.</li>
-<li><code>reset_button() -&gt; None</code>: Limpia el símbolo del botón para reiniciar el juego.</li>
+<li><code>update_button(button: tk.Button, symbol: str) -&gt; None</code>: Actualiza el texto del botón con el símbolo proporcionado.</li>
+<li><code>disable_button(button: tk.Button) -&gt; None</code>: Desactiva el botón.</li>
+<li><code>disable_all_buttons(buttons: dict) -&gt; None</code>: Desactiva todos los botones en el diccionario <code>buttons</code>.</li>
+<li><code>reset_buttons(buttons: dict) -&gt; None</code>: Restablece todos los botones a su estado original (habilitados y con texto vacío).</li>
 </ul>
 <hr />
 <h3 id="Relaci%C3%B3n-entre-clases:">Relaci&#243;n entre clases:<a class="anchor-link" href="#Relaci%C3%B3n-entre-clases:">&#182;</a></h3><ul>
-<li><strong><code>MainGame</code></strong>: Coordina la interacción entre <code>Player</code>, <code>Board</code> y <code>Button</code>. No hereda de ninguna clase.</li>
+<li><strong><code>MainGame</code></strong>: Coordina la interacción entre <code>Player</code>, <code>Board</code>, y <code>ButtonManager</code>. No hereda de ninguna clase.</li>
 <li><strong><code>Player</code></strong>: Maneja la información y las jugadas de un jugador. No hereda de ninguna clase.</li>
 <li><strong><code>Board</code></strong>: Gestiona la lógica del juego, las combinaciones ganadoras y el estado del tablero. No hereda de ninguna clase.</li>
-<li><strong><code>Button</code></strong>: Representa una casilla en la interfaz de usuario. No hereda de ninguna clase.</li>
+<li><strong><code>ButtonManager</code></strong>: Representa la gestión de los botones en la interfaz de usuario. No hereda de ninguna clase.</li>
 </ul>
 
 </div>
