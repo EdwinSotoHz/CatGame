@@ -93,4 +93,4 @@ class Main:
 
 # Inicializar la aplicación
 if __name__ == "__main__":
-    TicTacToeApp()
+    Main()
