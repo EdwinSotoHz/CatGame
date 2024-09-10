@@ -56,22 +56,25 @@ mainFrame = tk.Frame(root)
 mainFrame.pack(pady=20, padx=30)
 
 # Crear botones 
-buttons = {
-    '1_1': tk.Button(mainFrame, text='1', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['1_1'], 0, 0)),
-    '1_2': tk.Button(mainFrame, text='2', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['1_2'], 0, 1)),
-    '1_3': tk.Button(mainFrame, text='3', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['1_3'], 0, 2)),
-    '2_1': tk.Button(mainFrame, text='4', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['2_1'], 1, 0)),
-    '2_2': tk.Button(mainFrame, text='5', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['2_2'], 1, 1)),
-    '2_3': tk.Button(mainFrame, text='6', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['2_3'], 1, 2)),
-    '3_1': tk.Button(mainFrame, text='7', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['3_1'], 2, 0)),
-    '3_2': tk.Button(mainFrame, text='8', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['3_2'], 2, 1)),
-    '3_3': tk.Button(mainFrame, text='9', width=3, height=1, font=('Arial', 30), command=lambda: update_board(buttons['3_3'], 2, 2))
-}
-
-# Colocar los botones en el grid
-for (key, button) in buttons.items():
-    row, col = map(int, key.split('_'))
-    button.grid(row=row - 1, column=col - 1, padx=1, pady=1)
+buttons = {} # los metodos llevan x = ?, y = ?
+buttons['1_1'] = tk.Button(mainFrame, text='1', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['1_1'], 0, 0))
+buttons['1_1'].grid(row=0, column=0, padx=1, pady=1)
+buttons['1_2'] = tk.Button(mainFrame, text='2', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['1_2'], 0, 1))
+buttons['1_2'].grid(row=0, column=1, padx=1, pady=1)
+buttons['1_3'] = tk.Button(mainFrame, text='3', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['1_3'], 0, 2))
+buttons['1_3'].grid(row=0, column=2, padx=1, pady=1)
+buttons['2_1'] = tk.Button(mainFrame, text='4', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['2_1'], 1, 0))
+buttons['2_1'].grid(row=1, column=0, padx=1, pady=1)
+buttons['2_2'] = tk.Button(mainFrame, text='5', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['2_2'], 1, 1))
+buttons['2_2'].grid(row=1, column=1, padx=1, pady=1)
+buttons['2_3'] = tk.Button(mainFrame, text='6', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['2_3'], 1, 2))
+buttons['2_3'].grid(row=1, column=2, padx=1, pady=1)
+buttons['3_1'] = tk.Button(mainFrame, text='7', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['3_1'], 2, 0))
+buttons['3_1'].grid(row=2, column=0, padx=1, pady=1)
+buttons['3_2'] = tk.Button(mainFrame, text='8', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['3_2'], 2, 1))
+buttons['3_2'].grid(row=2, column=1, padx=1, pady=1)
+buttons['3_3'] = tk.Button(mainFrame, text='9', width=3, height=2, font=('Arial', 30), command=lambda: update_board(buttons['3_3'], 2, 2))
+buttons['3_3'].grid(row=2, column=2, padx=1, pady=1)
 
 # Botón de reset
 buttonReset = tk.Button(mainFrame, text='Reset', width=5, height=1, font=('Arial', 18), command=reset)
