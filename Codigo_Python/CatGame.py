@@ -37,9 +37,6 @@ class Board:
                     return False
         return True
 
-    def reset_board(self):
-        self.board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']] 
-
 class ButtonManager:
     def update_button(self, button, symbol):
         button.config(text=symbol)
@@ -50,39 +47,38 @@ class ButtonManager:
     def enable_button(self, button):
         button.config(state=tk.NORMAL)
 
-class Main:
+class Main(ButtonManager):
     def __init__(self):
         self.player1 = Player('X', 'Jugador X')
         self.player2 = Player('O', 'Jugador O')
         self.board = Board(self.player1)
-        self.btnManager = ButtonManager()
         self.buttons = {}
         self.label = None
         self.buttonReset = None
 
     def update_board(self, button, x, y):
         self.board.place_symbol(x, y)
-        self.btnManager.update_button(button, self.board.current_player.symbol)
-        self.btnManager.disable_button(button)
+        self.update_button(button, self.board.current_player.symbol)
+        self.disable_button(button)
 
         if self.board.check_winner():
             for button in self.buttons.values():
-                self.btnManager.disable_button(button)
-            self.btnManager.update_button(self.label, f'{self.board.current_player.symbol} Gana!')
+                self.disable_button(button)
+            self.update_button(self.label, f'{self.board.current_player.symbol} Gana!')
+            self.enable_button(self.buttonReset)
         elif self.board.is_board_full():
-            self.btnManager.update_button(self.label, '¡Empate!')
+            self.update_button(self.label, '¡Empate!')
+            self.enable_button(self.buttonReset)
         
-        self.btnManager.enable_button(self.buttonReset)
         self.board.current_player = self.player2 if (self.board.current_player == self.player1)  else self.player1
 
     def reset(self):
-        self.btnManager.update_button(self.label, ' ')
+        self.update_button(self.label, ' ')
         for button in self.buttons.values():
-            self.btnManager.enable_button(button)
-            self.btnManager.update_button(button, ' ')
-        self.btnManager.disable_button(self.buttonReset)
+            self.enable_button(button)
+            self.update_button(button, ' ')
+        self.disable_button(self.buttonReset)
         self.board = Board(self.player1)
-        self.board.reset_board()
     
     def play(self):
         root = tk.Tk()
@@ -115,7 +111,7 @@ class Main:
 
         self.buttonReset = tk.Button(mainFrame, text='De Nuevo', font=('Arial', 18), command=self.reset)
         self.buttonReset.grid(row=3, column=0, columnspan=3)
-        self.btnManager.disable_button(self.buttonReset)
+        self.disable_button(self.buttonReset)
 
         self.board = Board(self.player1)
         root.mainloop()
