@@ -49,8 +49,8 @@ class ButtonManager:
 
 class Main(ButtonManager):
     def __init__(self):
-        self.player1 = Player('X', 'Jugador X')
-        self.player2 = Player('O', 'Jugador O')
+        self.player1 = Player('X')
+        self.player2 = Player('O')
         self.board = Board(self.player1)
         self.buttons = {}
         self.label = None
@@ -90,23 +90,23 @@ class Main(ButtonManager):
         mainFrame = tk.Frame(root)
         mainFrame.pack(pady=20, padx=30)
 
-        self.buttons['1_1'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_1'], 0, 0))
+        self.buttons['1_1'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_1'], 0, 0))
         self.buttons['1_1'].grid(row=0, column=0)
-        self.buttons['1_2'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_2'], 0, 1))
+        self.buttons['1_2'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_2'], 0, 1))
         self.buttons['1_2'].grid(row=0, column=1)
-        self.buttons['1_3'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_3'], 0, 2))
+        self.buttons['1_3'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['1_3'], 0, 2))
         self.buttons['1_3'].grid(row=0, column=2)
-        self.buttons['2_1'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_1'], 1, 0))
+        self.buttons['2_1'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_1'], 1, 0))
         self.buttons['2_1'].grid(row=1, column=0)
-        self.buttons['2_2'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_2'], 1, 1))
+        self.buttons['2_2'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_2'], 1, 1))
         self.buttons['2_2'].grid(row=1, column=1)
-        self.buttons['2_3'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_3'], 1, 2))
+        self.buttons['2_3'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['2_3'], 1, 2))
         self.buttons['2_3'].grid(row=1, column=2)
-        self.buttons['3_1'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_1'], 2, 0))
+        self.buttons['3_1'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_1'], 2, 0))
         self.buttons['3_1'].grid(row=2, column=0)
-        self.buttons['3_2'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_2'], 2, 1))
+        self.buttons['3_2'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_2'], 2, 1))
         self.buttons['3_2'].grid(row=2, column=1)
-        self.buttons['3_3'] = tk.Button(mainFrame, text=' ', width=3, height=1, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_3'], 2, 2))
+        self.buttons['3_3'] = tk.Button(mainFrame, text=' ', width=3, height=2, font=('Arial', 30), command=lambda: self.update_board(self.buttons['3_3'], 2, 2))
         self.buttons['3_3'].grid(row=2, column=2)
 
         self.buttonReset = tk.Button(mainFrame, text='De Nuevo', font=('Arial', 18), command=self.reset)
